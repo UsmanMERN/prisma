@@ -27,13 +27,11 @@ exports.signup = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     const { email, password } = req.body;
-    console.log(password);
-    console.log(email);
     try {
         // take info from user 
-        // if (!email || !password) {
-        //     return console.log('please provide all fields')
-        // }
+        if (!email || !password) {
+            return console.log('please provide all fields')
+        }
         // find a user based on email
         const user = await prisma.user.findFirst({
             where: {

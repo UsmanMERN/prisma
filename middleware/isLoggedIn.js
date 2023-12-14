@@ -4,8 +4,7 @@ const jwt = require('jsonwebtoken')
 
 const isLoggedIn = async (req, res, next) => {
     try {
-        const token = req.cookie.token
-
+        const { token } = req.cookies
         if (!token) {
             res.send("please Login")
             throw new Error("you are not loggedIn")
@@ -16,8 +15,10 @@ const isLoggedIn = async (req, res, next) => {
                 id: decoded.userId
             }
         })
+        res.send("done")
         next()
     } catch (error) {
 
     }
 }
+module.exports = isLoggedIn
