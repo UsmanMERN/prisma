@@ -15,7 +15,6 @@ const isLoggedIn = async (req, res, next) => {
                 id: decoded.userId
             }
         })
-        res.send("done")
         next()
     } catch (error) {
 

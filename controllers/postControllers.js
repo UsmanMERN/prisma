@@ -4,17 +4,17 @@ const jwt = require("jsonwebtoken")
 // create a new post 
 
 exports.createPost = async (req, res, next) => {
-    const { title, body, userId } = req.body
+    const { title, body, userId, slug } = req.body
     // validation
-    if (!title || !body || !userId) {
+    if (!title || !body || !userId || !slug) {
         return console.log('please provide all fields')
     }
     try {
-        console.log("yawo");
         const results = await prisma.post.create({
             data: {
                 title,
                 body,
+                slug,
                 author: { connect: { id: userId } }
             }
         });
